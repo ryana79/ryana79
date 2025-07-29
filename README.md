@@ -1,7 +1,7 @@
 ## Hello, I'm Ryan 👋
 
  💻 Computer science student at Rutgers University New Brunswick 🪓<br/>
- ☁️ Cloud Solutions Intern and develop web apps 🌐<br/>
+ ☁️ Cloud Engineering Intern and develop web apps 🌐<br/>
 
  
 
