@@ -35,18 +35,16 @@ profile:
       <h3>CloudPulse</h3>
       <p>Multi-tenant Azure optimization dashboard with Microsoft identity, cost insights, anomaly detection, and an AI copilot flow.</p>
       <p>
-        <a href="https://github.com/ryana79/cloudpulse-azure-optimizer">
-          <img src="https://github-readme-stats.vercel.app/api/pin/?username=ryana79&repo=cloudpulse-azure-optimizer&theme=tokyonight&hide_border=true" alt="CloudPulse repository card" />
-        </a>
+        <a href="https://github.com/ryana79/cloudpulse-azure-optimizer"><img src="https://img.shields.io/badge/Open%20Repo-CloudPulse-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open CloudPulse repository" /></a>
+        <img src="https://img.shields.io/github/last-commit/ryana79/cloudpulse-azure-optimizer?style=for-the-badge&label=last%20commit&color=7c3aed" alt="CloudPulse last commit" />
       </p>
     </td>
     <td width="50%">
       <h3>Platform Control Room</h3>
       <p>Self-service platform engineering portal for workload onboarding, policy checks, GitOps artifacts, drift detection, and cost reports.</p>
       <p>
-        <a href="https://github.com/ryana79/platform-control-room">
-          <img src="https://github-readme-stats.vercel.app/api/pin/?username=ryana79&repo=platform-control-room&theme=tokyonight&hide_border=true" alt="Platform Control Room repository card" />
-        </a>
+        <a href="https://github.com/ryana79/platform-control-room"><img src="https://img.shields.io/badge/Open%20Repo-Platform%20Control%20Room-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Platform Control Room repository" /></a>
+        <img src="https://img.shields.io/github/last-commit/ryana79/platform-control-room?style=for-the-badge&label=last%20commit&color=7c3aed" alt="Platform Control Room last commit" />
       </p>
     </td>
   </tr>
@@ -55,18 +53,16 @@ profile:
       <h3>Azure Serverless User Management</h3>
       <p>Serverless user-management architecture built with Azure Functions, Cosmos DB, and modern web tooling.</p>
       <p>
-        <a href="https://github.com/ryana79/azure-serverless-user-management">
-          <img src="https://github-readme-stats.vercel.app/api/pin/?username=ryana79&repo=azure-serverless-user-management&theme=tokyonight&hide_border=true" alt="Azure Serverless User Management repository card" />
-        </a>
+        <a href="https://github.com/ryana79/azure-serverless-user-management"><img src="https://img.shields.io/badge/Open%20Repo-Azure%20Serverless-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Azure Serverless User Management repository" /></a>
+        <img src="https://img.shields.io/github/languages/top/ryana79/azure-serverless-user-management?style=for-the-badge&label=top%20language&color=7c3aed" alt="Azure Serverless User Management top language" />
       </p>
     </td>
     <td width="50%">
       <h3>Incident Postmortem Manager</h3>
       <p>Production-style incident postmortem app using React, TypeScript, Azure Functions, Cosmos DB, and Bicep infrastructure.</p>
       <p>
-        <a href="https://github.com/ryana79/incident-postmortem-manager">
-          <img src="https://github-readme-stats.vercel.app/api/pin/?username=ryana79&repo=incident-postmortem-manager&theme=tokyonight&hide_border=true" alt="Incident Postmortem Manager repository card" />
-        </a>
+        <a href="https://github.com/ryana79/incident-postmortem-manager"><img src="https://img.shields.io/badge/Open%20Repo-Incident%20Postmortems-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Incident Postmortem Manager repository" /></a>
+        <img src="https://img.shields.io/github/languages/top/ryana79/incident-postmortem-manager?style=for-the-badge&label=top%20language&color=7c3aed" alt="Incident Postmortem Manager top language" />
       </p>
     </td>
   </tr>
@@ -108,12 +104,12 @@ profile:
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=ryana79&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true&custom_title=Ryan%27s%20GitHub%20Control%20Panel" alt="Ryan Amir GitHub stats" width="49%" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ryana79&layout=compact&theme=tokyonight&hide_border=true&langs_count=10" alt="Ryan Amir top languages" width="49%" />
+![Public Repos](https://img.shields.io/badge/Public%20Repos-Cloud%20%7C%20Platform%20%7C%20Full--Stack-0f172a?style=for-the-badge&logo=github&logoColor=white)
+![Primary Cloud](https://img.shields.io/badge/Primary%20Cloud-Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![IaC](https://img.shields.io/badge/IaC-Terraform%20%2B%20Bicep-7c3aed?style=for-the-badge&logo=terraform&logoColor=white)
+![Automation](https://img.shields.io/badge/Automation-CI%2FCD%20%2B%20Dashboards-0ea5e9?style=for-the-badge&logo=githubactions&logoColor=white)
 
 <img src="https://streak-stats.demolab.com?user=ryana79&theme=tokyonight&hide_border=true&date_format=M%20j%5B%2C%20Y%5D" alt="Ryan Amir GitHub streak" width="70%" />
-
-<img src="https://github-profile-trophy.vercel.app/?username=ryana79&theme=tokyonight&no-frame=true&no-bg=true&margin-w=12&margin-h=12&column=4" alt="Ryan Amir GitHub trophies" width="90%" />
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=ryana79&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Signal" alt="Ryan Amir contribution activity graph" width="100%" />
 
