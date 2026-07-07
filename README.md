@@ -13,56 +13,81 @@
 
 ---
 
-## Mission Control
+## 🎯 Mission Control
 
-I am a Computer Science student at **Rutgers University-New Brunswick** focused on cloud engineering, platform automation, and production-minded full-stack systems. I like building tools that feel close to real infrastructure work: identity, dashboards, CI/CD, policy checks, cost visibility, generated deployment artifacts, and clean user workflows.
+I am a Computer Science student at **Rutgers University–New Brunswick** focused on cloud engineering, platform automation, and production-minded full-stack systems. I like building tools that feel close to real infrastructure work: identity, dashboards, CI/CD, policy checks, cost visibility, generated deployment artifacts, and clean user workflows.
 
 ```yaml
 profile:
   location: New Jersey
   focus: Azure, platform engineering, automation, full-stack systems
-  current_stack: FastAPI, Next.js, TypeScript, Python, Terraform, Docker
+  current_stack: [FastAPI, Next.js, TypeScript, Python, Terraform, Docker]
   operating_mode: ship practical projects, learn fast, keep systems observable
+  open_to: cloud & platform engineering roles
 ```
 
 ---
 
-## Systems I Build
+## 🚀 Systems I Build
 
 <table>
   <tr>
-    <td width="50%">
-      <h3>CloudPulse</h3>
-      <p>Multi-tenant Azure optimization dashboard with Microsoft identity, cost insights, anomaly detection, and an AI copilot flow.</p>
+    <td width="50%" valign="top">
+      <h3>☁️ CloudPulse — Azure Optimizer</h3>
+      <p>Multi-tenant Azure optimization console with Microsoft Entra ID auth, cost insights, anomaly detection, and an AI copilot flow.</p>
       <p>
-        <a href="https://github.com/ryana79/cloudpulse-azure-optimizer"><img src="https://img.shields.io/badge/Open%20Repo-CloudPulse-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open CloudPulse repository" /></a>
-        <img src="https://img.shields.io/github/last-commit/ryana79/cloudpulse-azure-optimizer?style=for-the-badge&label=last%20commit&color=7c3aed" alt="CloudPulse last commit" />
+        <a href="https://github.com/ryana79/cloudpulse-azure-optimizer"><img src="https://img.shields.io/badge/Open%20Repo-CloudPulse-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open CloudPulse repository" /></a><br/>
+        <img src="https://img.shields.io/github/last-commit/ryana79/cloudpulse-azure-optimizer?style=flat-square&label=last%20commit&color=7c3aed" alt="CloudPulse last commit" />
+        <img src="https://img.shields.io/github/languages/top/ryana79/cloudpulse-azure-optimizer?style=flat-square&color=0ea5e9" alt="CloudPulse top language" />
       </p>
     </td>
-    <td width="50%">
-      <h3>Platform Control Room</h3>
-      <p>Self-service platform engineering portal for workload onboarding, policy checks, GitOps artifacts, drift detection, and cost reports.</p>
+    <td width="50%" valign="top">
+      <h3>🛠️ Platform Control Room</h3>
+      <p>Self-service platform engineering portal for workload onboarding, IaC/GitOps artifact generation, policy checks, drift detection, and cost governance.</p>
       <p>
-        <a href="https://github.com/ryana79/platform-control-room"><img src="https://img.shields.io/badge/Open%20Repo-Platform%20Control%20Room-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Platform Control Room repository" /></a>
-        <img src="https://img.shields.io/github/last-commit/ryana79/platform-control-room?style=for-the-badge&label=last%20commit&color=7c3aed" alt="Platform Control Room last commit" />
+        <a href="https://github.com/ryana79/platform-control-room"><img src="https://img.shields.io/badge/Open%20Repo-Platform%20Control%20Room-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Platform Control Room repository" /></a><br/>
+        <img src="https://img.shields.io/github/last-commit/ryana79/platform-control-room?style=flat-square&label=last%20commit&color=7c3aed" alt="Platform Control Room last commit" />
+        <img src="https://img.shields.io/github/languages/top/ryana79/platform-control-room?style=flat-square&color=0ea5e9" alt="Platform Control Room top language" />
       </p>
     </td>
   </tr>
   <tr>
-    <td width="50%">
-      <h3>Azure Serverless User Management</h3>
-      <p>Serverless user-management architecture built with Azure Functions, Cosmos DB, and modern web tooling.</p>
+    <td width="50%" valign="top">
+      <h3>🚨 Incident Postmortem Manager</h3>
+      <p>Production-style incident postmortem platform using React, TypeScript, Azure Functions, Cosmos DB, Bicep IaC, CI/CD, and AI-assisted analysis.</p>
       <p>
-        <a href="https://github.com/ryana79/azure-serverless-user-management"><img src="https://img.shields.io/badge/Open%20Repo-Azure%20Serverless-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Azure Serverless User Management repository" /></a>
-        <img src="https://img.shields.io/github/languages/top/ryana79/azure-serverless-user-management?style=for-the-badge&label=top%20language&color=7c3aed" alt="Azure Serverless User Management top language" />
+        <a href="https://github.com/ryana79/incident-postmortem-manager"><img src="https://img.shields.io/badge/Open%20Repo-Incident%20Postmortems-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Incident Postmortem Manager repository" /></a><br/>
+        <img src="https://img.shields.io/github/last-commit/ryana79/incident-postmortem-manager?style=flat-square&label=last%20commit&color=7c3aed" alt="Incident Postmortem Manager last commit" />
+        <img src="https://img.shields.io/github/languages/top/ryana79/incident-postmortem-manager?style=flat-square&color=0ea5e9" alt="Incident Postmortem Manager top language" />
       </p>
     </td>
-    <td width="50%">
-      <h3>Incident Postmortem Manager</h3>
-      <p>Production-style incident postmortem app using React, TypeScript, Azure Functions, Cosmos DB, and Bicep infrastructure.</p>
+    <td width="50%" valign="top">
+      <h3>⚡ Azure Serverless User Management</h3>
+      <p>Serverless user-management architecture built with Azure Functions, Cosmos DB, authentication workflows, and modern web tooling.</p>
       <p>
-        <a href="https://github.com/ryana79/incident-postmortem-manager"><img src="https://img.shields.io/badge/Open%20Repo-Incident%20Postmortems-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Incident Postmortem Manager repository" /></a>
-        <img src="https://img.shields.io/github/languages/top/ryana79/incident-postmortem-manager?style=for-the-badge&label=top%20language&color=7c3aed" alt="Incident Postmortem Manager top language" />
+        <a href="https://github.com/ryana79/azure-serverless-user-management"><img src="https://img.shields.io/badge/Open%20Repo-Azure%20Serverless-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Azure Serverless User Management repository" /></a><br/>
+        <img src="https://img.shields.io/github/last-commit/ryana79/azure-serverless-user-management?style=flat-square&label=last%20commit&color=7c3aed" alt="Azure Serverless User Management last commit" />
+        <img src="https://img.shields.io/github/languages/top/ryana79/azure-serverless-user-management?style=flat-square&color=0ea5e9" alt="Azure Serverless User Management top language" />
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>💻 NotchPro</h3>
+      <p>Fast, secure macOS notch overlay app — native Swift with a focus on performance and clean UX.</p>
+      <p>
+        <a href="https://github.com/ryana79/notch-app"><img src="https://img.shields.io/badge/Open%20Repo-NotchPro-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open NotchPro repository" /></a><br/>
+        <img src="https://img.shields.io/github/last-commit/ryana79/notch-app?style=flat-square&label=last%20commit&color=7c3aed" alt="NotchPro last commit" />
+        <img src="https://img.shields.io/github/languages/top/ryana79/notch-app?style=flat-square&color=0ea5e9" alt="NotchPro top language" />
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🌐 Portfolio Website</h3>
+      <p>Professional portfolio showcasing cloud engineering projects and web development skills.</p>
+      <p>
+        <a href="https://github.com/ryana79/ryan-amir-portfolio"><img src="https://img.shields.io/badge/Open%20Repo-Portfolio-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open portfolio repository" /></a><br/>
+        <img src="https://img.shields.io/github/last-commit/ryana79/ryan-amir-portfolio?style=flat-square&label=last%20commit&color=7c3aed" alt="Portfolio last commit" />
+        <img src="https://img.shields.io/github/languages/top/ryana79/ryan-amir-portfolio?style=flat-square&color=0ea5e9" alt="Portfolio top language" />
       </p>
     </td>
   </tr>
@@ -70,54 +95,59 @@ profile:
 
 ---
 
-## Technology Radar
+## 🧰 Technology Radar
 
 <div align="center">
 
-![Azure](https://img.shields.io/badge/Azure-0f172a?style=for-the-badge&logo=microsoftazure&logoColor=38bdf8)
-![Terraform](https://img.shields.io/badge/Terraform-0f172a?style=for-the-badge&logo=terraform&logoColor=8b5cf6)
-![Docker](https://img.shields.io/badge/Docker-0f172a?style=for-the-badge&logo=docker&logoColor=38bdf8)
-![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-0f172a?style=for-the-badge&logo=githubactions&logoColor=60a5fa)
-![FastAPI](https://img.shields.io/badge/FastAPI-0f172a?style=for-the-badge&logo=fastapi&logoColor=10b981)
-![Next.js](https://img.shields.io/badge/Next.js-0f172a?style=for-the-badge&logo=nextdotjs&logoColor=ffffff)
-![TypeScript](https://img.shields.io/badge/TypeScript-0f172a?style=for-the-badge&logo=typescript&logoColor=60a5fa)
-![Python](https://img.shields.io/badge/Python-0f172a?style=for-the-badge&logo=python&logoColor=facc15)
-![React](https://img.shields.io/badge/React-0f172a?style=for-the-badge&logo=react&logoColor=38bdf8)
-![Node.js](https://img.shields.io/badge/Node.js-0f172a?style=for-the-badge&logo=nodedotjs&logoColor=22c55e)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-0f172a?style=for-the-badge&logo=postgresql&logoColor=60a5fa)
-![Swift](https://img.shields.io/badge/Swift-0f172a?style=for-the-badge&logo=swift&logoColor=fb923c)
+### Cloud & Infrastructure
+<img src="https://skillicons.dev/icons?i=azure,terraform,docker,kubernetes,githubactions,linux&theme=dark" alt="Cloud and infrastructure tools" />
+
+### Backend & Data
+<img src="https://skillicons.dev/icons?i=python,fastapi,nodejs,postgres,mongodb,firebase&theme=dark" alt="Backend and data tools" />
+
+### Frontend & Mobile
+<img src="https://skillicons.dev/icons?i=typescript,react,nextjs,tailwind,swift,html&theme=dark" alt="Frontend and mobile tools" />
+
+### Languages & Tools
+<img src="https://skillicons.dev/icons?i=java,c,ocaml,git,vscode,figma&theme=dark" alt="Languages and tools" />
 
 </div>
 
 ---
 
-## Current Build Queue
-
-- Designing cloud dashboards that turn cost, drift, and workload state into useful engineering decisions.
-- Strengthening Azure, Terraform, Docker, CI/CD, and identity workflows through practical repo builds.
-- Building full-stack interfaces that make infrastructure workflows easier to understand and operate.
-- Exploring AI-assisted automation where it can improve developer and operator workflows.
-
----
-
-## GitHub Telemetry
+## 📊 GitHub Telemetry
 
 <div align="center">
 
-![Public Repos](https://img.shields.io/badge/Public%20Repos-Cloud%20%7C%20Platform%20%7C%20Full--Stack-0f172a?style=for-the-badge&logo=github&logoColor=white)
-![Primary Cloud](https://img.shields.io/badge/Primary%20Cloud-Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![IaC](https://img.shields.io/badge/IaC-Terraform%20%2B%20Bicep-7c3aed?style=for-the-badge&logo=terraform&logoColor=white)
-![Automation](https://img.shields.io/badge/Automation-CI%2FCD%20%2B%20Dashboards-0ea5e9?style=for-the-badge&logo=githubactions&logoColor=white)
+<img src="https://github-readme-stats.vercel.app/api?username=ryana79&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" alt="Ryan Amir GitHub stats" height="180" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ryana79&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Ryan Amir top languages" height="180" />
 
 <img src="https://streak-stats.demolab.com?user=ryana79&theme=tokyonight&hide_border=true&date_format=M%20j%5B%2C%20Y%5D" alt="Ryan Amir GitHub streak" width="70%" />
 
+<img src="https://github-profile-trophy.vercel.app/?username=ryana79&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=8" alt="Ryan Amir GitHub trophies" width="100%" />
+
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=ryana79&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Signal" alt="Ryan Amir contribution activity graph" width="100%" />
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ryana79/ryana79/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ryana79/ryana79/output/github-contribution-grid-snake.svg" />
+  <img src="https://raw.githubusercontent.com/ryana79/ryana79/output/github-contribution-grid-snake.svg" alt="Contribution snake animation" width="100%" />
+</picture>
 
 </div>
 
 ---
 
-## Operating Principles
+## 🔭 Current Build Queue
+
+- ☁️ Designing cloud dashboards that turn cost, drift, and workload state into useful engineering decisions.
+- 🏗️ Strengthening Azure, Terraform, Docker, CI/CD, and identity workflows through practical repo builds.
+- 🖥️ Building full-stack interfaces that make infrastructure workflows easier to understand and operate.
+- 🤖 Exploring AI-assisted automation where it can improve developer and operator workflows.
+
+---
+
+## 🧭 Operating Principles
 
 > Build useful systems. Automate the repeatable work. Keep the interface clean. Make the infrastructure understandable.
 
@@ -127,7 +157,7 @@ I am working toward cloud and platform engineering roles where I can combine sof
 
 <div align="center">
 
-### Connect
+### 🤝 Connect
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ryan--amir--335143299-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ryan-amir-335143299/)
 [![Email](https://img.shields.io/badge/Email-ryanmohammadamir%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ryanmohammadamir@gmail.com)
