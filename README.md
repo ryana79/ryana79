@@ -119,12 +119,12 @@ profile:
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=ryana79&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" alt="Ryan Amir GitHub stats" height="180" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ryana79&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Ryan Amir top languages" height="180" />
+<img src="https://github-readme-stats-sigma-five.vercel.app/api?username=ryana79&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" alt="Ryan Amir GitHub stats" height="180" />
+<img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=ryana79&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Ryan Amir top languages" height="180" />
 
 <img src="https://streak-stats.demolab.com?user=ryana79&theme=tokyonight&hide_border=true&date_format=M%20j%5B%2C%20Y%5D" alt="Ryan Amir GitHub streak" width="70%" />
 
-<img src="https://github-profile-trophy.vercel.app/?username=ryana79&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=8" alt="Ryan Amir GitHub trophies" width="100%" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=ryana79&theme=tokyonight" alt="Ryan Amir profile details and contribution timeline" width="100%" />
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=ryana79&theme=tokyo-night&hide_border=true&area=true&custom_title=Contribution%20Signal" alt="Ryan Amir contribution activity graph" width="100%" />
 
