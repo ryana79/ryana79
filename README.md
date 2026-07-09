@@ -13,7 +13,7 @@
 
 ---
 
-## 🎯 Mission Control
+## Mission Control
 
 I am a Computer Science student at **Rutgers University–New Brunswick** focused on cloud engineering, platform automation, and production-minded full-stack systems. I like building tools that feel close to real infrastructure work: identity, dashboards, CI/CD, policy checks, cost visibility, generated deployment artifacts, and clean user workflows.
 
@@ -28,12 +28,12 @@ profile:
 
 ---
 
-## 🚀 Systems I Build
+## Systems I Build
 
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3>☁️ CloudPulse — Azure Optimizer</h3>
+      <h3>CloudPulse: Azure Optimizer</h3>
       <p>Multi-tenant Azure optimization console with Microsoft Entra ID auth, cost insights, anomaly detection, and an AI copilot flow.</p>
       <p><sub>OAuth2 On-Behalf-Of delegation · 6-rule optimization engine + z-score anomaly detection · 17-case pytest suite · CI + CodeQL + Dependabot</sub></p>
       <p>
@@ -43,7 +43,7 @@ profile:
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>🛠️ Platform Control Room</h3>
+      <h3>Platform Control Room</h3>
       <p>Self-service platform engineering portal for workload onboarding, IaC/GitOps artifact generation, policy checks, drift detection, and cost governance. <a href="https://platformcontrolroom.com">Live demo →</a></p>
       <p><sub>25 REST routes · generates Terraform/Helm/K8s/ArgoCD artifacts · OPA Gatekeeper + Conftest policies · 7 CI workflows</sub></p>
       <p>
@@ -55,7 +55,7 @@ profile:
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🚨 Incident Postmortem Manager</h3>
+      <h3>Incident Postmortem Manager</h3>
       <p>Production-style incident postmortem platform using React, TypeScript, Azure Functions, Cosmos DB, Bicep IaC, CI/CD, and AI-assisted analysis.</p>
       <p><sub>14 serverless endpoints · 43 Jest tests with coverage in CI · ~960 lines of Bicep + Terraform · Managed Identity, zero stored secrets</sub></p>
       <p>
@@ -65,7 +65,7 @@ profile:
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>⚡ Azure Serverless User Management</h3>
+      <h3>Azure Serverless User Management</h3>
       <p>Serverless user-management architecture built with Azure Functions, Cosmos DB, authentication workflows, and modern web tooling. <a href="https://azure-user-manager.netlify.app">Hosted frontend →</a></p>
       <p><sub>Azure Functions + Cosmos DB · Bicep IaC · GitHub Actions deploy pipeline · App Insights observability</sub></p>
       <p>
@@ -77,8 +77,8 @@ profile:
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>💻 NotchPro</h3>
-      <p>Fast, secure macOS notch overlay app — native Swift with a focus on performance and clean UX.</p>
+      <h3>NotchPro</h3>
+      <p>Fast, secure macOS notch overlay app, built in native Swift with a focus on performance and clean UX.</p>
       <p>
         <a href="https://github.com/ryana79/notch-app"><img src="https://img.shields.io/badge/Open%20Repo-NotchPro-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open NotchPro repository" /></a><br/>
         <img src="https://img.shields.io/github/last-commit/ryana79/notch-app?style=flat-square&label=last%20commit&color=7c3aed" alt="NotchPro last commit" />
@@ -86,7 +86,7 @@ profile:
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3>🌐 Portfolio Website</h3>
+      <h3>Portfolio Website</h3>
       <p>Professional portfolio showcasing cloud engineering projects and web development skills.</p>
       <p>
         <a href="https://github.com/ryana79/ryan-amir-portfolio"><img src="https://img.shields.io/badge/Open%20Repo-Portfolio-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open portfolio repository" /></a><br/>
@@ -99,7 +99,7 @@ profile:
 
 ---
 
-## 🧰 Technology Radar
+## Technology Radar
 
 <div align="center">
 
@@ -119,7 +119,7 @@ profile:
 
 ---
 
-## 📊 GitHub Telemetry
+## GitHub Telemetry
 
 <div align="center">
 
@@ -142,16 +142,16 @@ profile:
 
 ---
 
-## 🔭 Current Build Queue
+## Current Build Queue
 
-- ☁️ Designing cloud dashboards that turn cost, drift, and workload state into useful engineering decisions.
-- 🏗️ Strengthening Azure, Terraform, Docker, CI/CD, and identity workflows through practical repo builds.
-- 🖥️ Building full-stack interfaces that make infrastructure workflows easier to understand and operate.
-- 🤖 Exploring AI-assisted automation where it can improve developer and operator workflows.
+- Designing cloud dashboards that turn cost, drift, and workload state into useful engineering decisions.
+- Strengthening Azure, Terraform, Docker, CI/CD, and identity workflows through practical repo builds.
+- Building full-stack interfaces that make infrastructure workflows easier to understand and operate.
+- Exploring AI-assisted automation where it can improve developer and operator workflows.
 
 ---
 
-## 🧭 Operating Principles
+## Operating Principles
 
 > Build useful systems. Automate the repeatable work. Keep the interface clean. Make the infrastructure understandable.
 
@@ -161,7 +161,7 @@ I am working toward cloud and platform engineering roles where I can combine sof
 
 <div align="center">
 
-### 🤝 Connect
+### Connect
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ryan--amir--335143299-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ryan-amir-335143299/)
 [![Email](https://img.shields.io/badge/Email-ryanmohammadamir%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ryanmohammadamir@gmail.com)
