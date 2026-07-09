@@ -35,6 +35,7 @@ profile:
     <td width="50%" valign="top">
       <h3>☁️ CloudPulse — Azure Optimizer</h3>
       <p>Multi-tenant Azure optimization console with Microsoft Entra ID auth, cost insights, anomaly detection, and an AI copilot flow.</p>
+      <p><sub>OAuth2 On-Behalf-Of delegation · 6-rule optimization engine + z-score anomaly detection · 17-case pytest suite · CI + CodeQL + Dependabot</sub></p>
       <p>
         <a href="https://github.com/ryana79/cloudpulse-azure-optimizer"><img src="https://img.shields.io/badge/Open%20Repo-CloudPulse-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open CloudPulse repository" /></a><br/>
         <img src="https://img.shields.io/github/last-commit/ryana79/cloudpulse-azure-optimizer?style=flat-square&label=last%20commit&color=7c3aed" alt="CloudPulse last commit" />
@@ -43,7 +44,8 @@ profile:
     </td>
     <td width="50%" valign="top">
       <h3>🛠️ Platform Control Room</h3>
-      <p>Self-service platform engineering portal for workload onboarding, IaC/GitOps artifact generation, policy checks, drift detection, and cost governance.</p>
+      <p>Self-service platform engineering portal for workload onboarding, IaC/GitOps artifact generation, policy checks, drift detection, and cost governance. <a href="https://platformcontrolroom.com">Live demo →</a></p>
+      <p><sub>25 REST routes · generates Terraform/Helm/K8s/ArgoCD artifacts · OPA Gatekeeper + Conftest policies · 7 CI workflows</sub></p>
       <p>
         <a href="https://github.com/ryana79/platform-control-room"><img src="https://img.shields.io/badge/Open%20Repo-Platform%20Control%20Room-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Platform Control Room repository" /></a><br/>
         <img src="https://img.shields.io/github/last-commit/ryana79/platform-control-room?style=flat-square&label=last%20commit&color=7c3aed" alt="Platform Control Room last commit" />
@@ -55,6 +57,7 @@ profile:
     <td width="50%" valign="top">
       <h3>🚨 Incident Postmortem Manager</h3>
       <p>Production-style incident postmortem platform using React, TypeScript, Azure Functions, Cosmos DB, Bicep IaC, CI/CD, and AI-assisted analysis.</p>
+      <p><sub>14 serverless endpoints · 43 Jest tests with coverage in CI · ~960 lines of Bicep + Terraform · Managed Identity, zero stored secrets</sub></p>
       <p>
         <a href="https://github.com/ryana79/incident-postmortem-manager"><img src="https://img.shields.io/badge/Open%20Repo-Incident%20Postmortems-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Incident Postmortem Manager repository" /></a><br/>
         <img src="https://img.shields.io/github/last-commit/ryana79/incident-postmortem-manager?style=flat-square&label=last%20commit&color=7c3aed" alt="Incident Postmortem Manager last commit" />
@@ -63,7 +66,8 @@ profile:
     </td>
     <td width="50%" valign="top">
       <h3>⚡ Azure Serverless User Management</h3>
-      <p>Serverless user-management architecture built with Azure Functions, Cosmos DB, authentication workflows, and modern web tooling.</p>
+      <p>Serverless user-management architecture built with Azure Functions, Cosmos DB, authentication workflows, and modern web tooling. <a href="https://azure-user-manager.netlify.app">Hosted frontend →</a></p>
+      <p><sub>Azure Functions + Cosmos DB · Bicep IaC · GitHub Actions deploy pipeline · App Insights observability</sub></p>
       <p>
         <a href="https://github.com/ryana79/azure-serverless-user-management"><img src="https://img.shields.io/badge/Open%20Repo-Azure%20Serverless-0ea5e9?style=for-the-badge&logo=github&logoColor=white" alt="Open Azure Serverless User Management repository" /></a><br/>
         <img src="https://img.shields.io/github/last-commit/ryana79/azure-serverless-user-management?style=flat-square&label=last%20commit&color=7c3aed" alt="Azure Serverless User Management last commit" />
