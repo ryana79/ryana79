@@ -16,6 +16,8 @@ import { eventJsonLd, jsonLdString } from "@/lib/seo";
 import { sanitizeRichText, stripHtml } from "@/lib/sanitize";
 import { mediaUrl } from "@/lib/media";
 import { MediaGallery } from "@/components/site/media-gallery";
+import { TurkeyBowlPage } from "@/components/site/turkey-bowl";
+import { TURKEY_BOWL_COPY, TURKEY_BOWL_SLUG, asPublicTurkeyBowl } from "@/lib/events/turkey-bowl";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -27,6 +29,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  if (slug === TURKEY_BOWL_SLUG) {
+    return {
+      title: TURKEY_BOWL_COPY.title,
+      description: "Registration is closed for the November 28, 2026 Turkey Bowl Youth Combine + Clinic at Lombardi Field in Old Bridge, NJ. Check-in times for grades 3–9.",
+      alternates: { canonical: `/events/${TURKEY_BOWL_SLUG}` },
+    };
+  }
   const data = await getEventBySlug(slug);
   if (!data) return { title: "Event not found", robots: { index: false } };
   const { event: e } = data;
@@ -43,6 +52,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  if (slug === TURKEY_BOWL_SLUG) {
+    const data = await getEventBySlug(slug);
+    return <TurkeyBowlPage event={asPublicTurkeyBowl(data?.event)} />;
+  }
   const data = await getEventBySlug(slug);
   if (!data) notFound();
   const { event: e, staff, sponsors } = data;

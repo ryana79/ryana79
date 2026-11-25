@@ -17,13 +17,25 @@ const COPY = {
   membership_interest: { cta: "Notify me at launch", done: "You're on the list. We'll email you when NEXT GEN+ billing opens. No payment has been taken.", messageLabel: "Anything you'd like us to know? (optional)" },
 } as const;
 
-export function InquiryForm({ kind }: { kind: InquiryInput["kind"] }) {
+export function InquiryForm({
+  kind,
+  cta,
+  messageLabel,
+  doneMessage,
+  interest,
+}: {
+  kind: InquiryInput["kind"];
+  cta?: string;
+  messageLabel?: string;
+  doneMessage?: string;
+  interest?: string;
+}) {
   const [pending, start] = useTransition();
   const [done, setDone] = useState(false);
-  const copy = COPY[kind];
+  const copy = { ...COPY[kind], ...(cta ? { cta } : {}), ...(messageLabel ? { messageLabel } : {}), ...(doneMessage ? { done: doneMessage } : {}) };
   const { register, handleSubmit, setError, reset, formState: { errors } } = useForm<InquiryInput>({
     resolver: zodResolver(inquirySchema),
-    defaultValues: { kind, name: "", email: "", organization: "", phone: "", message: "", website: "" },
+    defaultValues: { kind, name: "", email: "", organization: "", phone: "", message: "", website: "", interest: interest ?? "" },
   });
 
   const onSubmit = (values: InquiryInput) =>
@@ -52,6 +64,7 @@ export function InquiryForm({ kind }: { kind: InquiryInput["kind"] }) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
       <input type="hidden" {...register("kind")} />
+      <input type="hidden" {...register("interest")} />
       <div className="hidden" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" {...register("website")} /></label></div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name" htmlFor={`${kind}-name`} error={errors.name?.message} required><input id={`${kind}-name`} autoComplete="name" className="field" {...register("name")} /></Field>

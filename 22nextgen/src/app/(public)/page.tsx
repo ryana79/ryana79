@@ -3,6 +3,7 @@ import { getPublicSettings } from "@/lib/data/settings";
 import { getFeaturedAthletes, getLatestArticles, getLeaderboard, getSponsors, getTestTypes, getUpcomingEvents } from "@/lib/data/public";
 import { EventPromoSection, FeaturedAthletesSection, Hero, LeaderboardsSection, MembershipPromo, NewsSection, SponsorsSection, UpcomingEventsSection } from "@/components/site/home-sections";
 import { BRAND } from "@/lib/site";
+import { mergeTurkeyBowl } from "@/lib/events/turkey-bowl";
 
 export const revalidate = 60;
 
@@ -24,12 +25,13 @@ export default async function HomePage() {
     cfg.leaderboards.enabled ? getTestTypes() : Promise.resolve([]),
   ]);
   const boards = cfg.leaderboards.enabled ? await Promise.all(tests.map((t) => getLeaderboard(t.slug, {}, 5))) : [];
+  const listedEvents = mergeTurkeyBowl(events);
 
   return (
     <>
       {cfg.hero.enabled ? <Hero hero={cfg.hero} /> : <div className="h-20" />}
-      {cfg.event_promo.enabled ? <EventPromoSection cfg={cfg.event_promo} featured={events[0] ?? null} /> : null}
-      {cfg.events.enabled ? <UpcomingEventsSection cfg={cfg.events} events={events} /> : null}
+      {cfg.event_promo.enabled ? <EventPromoSection cfg={cfg.event_promo} featured={listedEvents[0] ?? null} /> : null}
+      {cfg.events.enabled ? <UpcomingEventsSection cfg={cfg.events} events={listedEvents} /> : null}
       {cfg.athletes.enabled ? <FeaturedAthletesSection cfg={cfg.athletes} athletes={featured.athletes} metrics={featured.metrics} /> : null}
       {cfg.leaderboards.enabled ? <LeaderboardsSection cfg={cfg.leaderboards} boards={boards} /> : null}
       {cfg.news.enabled ? <NewsSection cfg={cfg.news} articles={articles} /> : null}

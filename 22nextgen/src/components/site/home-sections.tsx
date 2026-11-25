@@ -7,6 +7,7 @@ import { MediaImage } from "./media";
 import { AthleteCard, ArticleCard, Badge, EventCard, SponsorLogo } from "./cards";
 import { dateParts, formatCents, formatEventDate, formatMeasurement, formatTimeRange } from "@/lib/format";
 import { canRegister, eligibilityLabel, locationLabel, priceLabel, registrationLabel, typeLabel } from "@/lib/event-utils";
+import { checkInHref, directionsFor } from "@/lib/events/turkey-bowl";
 import type { ArticleRow, AthleteRow, EventRow, HomepageSettings, MembershipSettings, SponsorRow, TestTypeRow } from "@/lib/types";
 import type { getLeaderboard } from "@/lib/data/public";
 import { BRAND } from "@/lib/site";
@@ -74,6 +75,8 @@ const EVENT_PITCHES = [
 export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["event_promo"]; featured: EventRow | null }) {
   const dp = featured ? dateParts(featured.event_date) : null;
   const open = featured ? canRegister(featured) : false;
+  const closed = featured?.registration_status === "closed";
+  const directions = featured ? directionsFor(featured) : null;
   const when = featured
     ? [formatEventDate(featured.event_date), formatTimeRange(featured.start_time, featured.end_time, featured.time_zone, featured.event_date)].filter(Boolean).join(" · ")
     : null;
@@ -105,11 +108,18 @@ export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["ev
               <li className="flex items-start gap-2"><MapPin className="mt-0.5 size-4 shrink-0 text-brand" />{locationLabel(featured)}</li>
               <li className="flex items-start gap-2"><Users className="mt-0.5 size-4 shrink-0 text-brand" />{eligibilityLabel(featured)}</li>
             </ul>
-            <div className="flex flex-wrap items-center gap-4 pt-1">
-              <p className="font-display text-3xl font-extrabold">{priceLabel(featured)}</p>
-              <ButtonLink href={`/events/${featured.slug}${open ? "#register" : ""}`} size="md">
-                {open ? "Register now" : "View event"} <ArrowRight className="size-4" />
-              </ButtonLink>
+            <div className="flex flex-col items-start gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center">
+              {closed ? null : <p className="font-display text-3xl font-extrabold">{priceLabel(featured)}</p>}
+              {closed ? (
+                <>
+                  <ButtonLink href={checkInHref(featured.slug)} size="md">View Check-In Schedule <ArrowRight className="size-4" /></ButtonLink>
+                  {directions ? <ButtonLink href={directions} external variant="outline" size="md">Get Directions</ButtonLink> : null}
+                </>
+              ) : (
+                <ButtonLink href={`/events/${featured.slug}${open ? "#register" : ""}`} size="md">
+                  {open ? "Register now" : "View event"} <ArrowRight className="size-4" />
+                </ButtonLink>
+              )}
             </div>
           </div>
         </article>

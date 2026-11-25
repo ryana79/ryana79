@@ -6,6 +6,7 @@ import { MediaImage } from "./media";
 import { ButtonLink } from "./btn";
 import { athleteName, dateParts, formatEventDate, formatMeasurement, formatPublishedDate, formatTimeRange } from "@/lib/format";
 import { canRegister, eligibilityLabel, locationLabel, priceLabel, registrationLabel, typeLabel } from "@/lib/event-utils";
+import { checkInHref, directionsFor } from "@/lib/events/turkey-bowl";
 import { ARTICLE_CATEGORIES, labelFor } from "@/lib/site";
 
 export function Badge({ children, tone = "brand", className }: { children: React.ReactNode; tone?: "brand" | "neutral" | "success" | "warn"; className?: string }) {
@@ -21,6 +22,8 @@ export function Badge({ children, tone = "brand", className }: { children: React
 export function EventCard({ event }: { event: EventRow }) {
   const dp = dateParts(event.event_date);
   const open = canRegister(event);
+  const closed = event.registration_status === "closed";
+  const directions = directionsFor(event);
   return (
     <article className="card-surface card-hover group relative flex flex-col overflow-hidden">
       <Link href={`/events/${event.slug}`} className="absolute inset-0 z-10" aria-label={`${event.title} details`} />
@@ -44,14 +47,25 @@ export function EventCard({ event }: { event: EventRow }) {
           <li className="flex items-start gap-2"><MapPin className="mt-0.5 size-4 shrink-0 text-brand" />{locationLabel(event)}</li>
           <li className="flex items-start gap-2"><Users className="mt-0.5 size-4 shrink-0 text-brand" />{eligibilityLabel(event)}</li>
         </ul>
-        <div className="mt-auto flex items-center justify-between gap-3 pt-3">
-          <div>
-            <div className="font-display text-2xl font-bold">{priceLabel(event)}</div>
-            <div className="text-xs uppercase tracking-wider text-white/45">{registrationLabel(event.registration_status)}</div>
-          </div>
-          <ButtonLink href={`/events/${event.slug}${open ? "#register" : ""}`} size="sm" variant={open ? "primary" : "dark"} className="relative z-20">
-            {open ? "Register Now" : "View Event"}
-          </ButtonLink>
+        <div className="mt-auto flex flex-col gap-2 pt-3">
+          {closed ? (
+            <p className="text-xs font-semibold uppercase tracking-wider text-amber-200">Registration Closed</p>
+          ) : (
+            <div>
+              <div className="font-display text-2xl font-bold">{priceLabel(event)}</div>
+              <div className="text-xs uppercase tracking-wider text-white/45">{registrationLabel(event.registration_status)}</div>
+            </div>
+          )}
+          {closed ? (
+            <div className="grid gap-2">
+              <ButtonLink href={checkInHref(event.slug)} size="sm" className="relative z-20">View Check-In Schedule</ButtonLink>
+              {directions ? <ButtonLink href={directions} external variant="outline" size="sm" className="relative z-20">Get Directions</ButtonLink> : null}
+            </div>
+          ) : (
+            <ButtonLink href={`/events/${event.slug}${open ? "#register" : ""}`} size="sm" variant={open ? "primary" : "dark"} className="relative z-20 self-start">
+              {open ? "Register Now" : "View Event"}
+            </ButtonLink>
+          )}
         </div>
       </div>
     </article>
