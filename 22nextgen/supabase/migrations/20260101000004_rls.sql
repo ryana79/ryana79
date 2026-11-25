@@ -113,8 +113,10 @@ create policy sponsors_editor_write on public.sponsors for all to authenticated
 -- archived events stay readable so historical verified results keep their event context; pages hide them
 create policy events_public_read on public.events for select to anon, authenticated using (status in ('published', 'archived'));
 create policy events_staff_read on public.events for select to authenticated using (public.is_staff());
-create policy events_editor_write on public.events for all to authenticated
+create policy events_editor_insert on public.events for insert to authenticated with check (public.is_editor());
+create policy events_editor_update on public.events for update to authenticated
   using (public.is_editor()) with check (public.is_editor());
+create policy events_admin_delete on public.events for delete to authenticated using (public.is_admin());
 
 create policy event_staff_public_read on public.event_staff for select to anon, authenticated
   using (exists (select 1 from public.events e where e.id = event_id and e.status = 'published'));
