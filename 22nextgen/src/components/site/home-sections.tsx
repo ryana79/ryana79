@@ -102,9 +102,9 @@ export function LeaderboardsSection({ cfg, boards }: { cfg: HomepageSettings["le
     <Section>
       <SectionHeader eyebrow="Develop" title={cfg.title} description={cfg.description} href="/combine-results" hrefLabel="Full leaderboards" />
       {any ? (
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {withData.map((b) => (
-            <div key={b.test!.id} className="card-surface p-5">
+            <div key={b.test!.id} className="card-surface min-w-0 p-5">
               <div className="mb-4 flex items-center justify-between">
                 <h3 className="font-display text-2xl font-extrabold uppercase tracking-wide">{b.test!.name}</h3>
                 <Trophy className="size-5 text-brand" />

@@ -171,6 +171,8 @@ export async function getBestMetrics(athleteIds: string[]) {
       .from("combine_results")
       .select("athlete_id, value, protocol, test:combine_test_types!inner(slug, name, unit, direction, decimals, sort_order)")
       .in("athlete_id", athleteIds)
+      .eq("verification_status", "verified")
+      .eq("is_current", true)
       .eq("protocol", "standard");
     const rows = (data ?? []) as unknown as { athlete_id: string; value: number; test: { slug: string; name: string; unit: string; direction: Direction; decimals: number; sort_order: number } }[];
     const byAthlete = new Map<string, Map<string, (typeof rows)[number]>>();

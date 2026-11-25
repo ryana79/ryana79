@@ -61,8 +61,8 @@ describe("anonymous and low-privilege access", () => {
   });
 
   it("does not let a parent or coach read staff-only data", async () => {
-    const roles = await as(db, parent, () => db.query("select * from public.user_roles"));
-    expect(roles.rows.every((r: { user_id: string }) => r.user_id === parent.id)).toBe(true);
+    const roles = await as(db, parent, () => db.query<{ user_id: string }>("select * from public.user_roles"));
+    expect(roles.rows.every((r) => r.user_id === parent.id)).toBe(true);
     const audit = await as(db, coach, () => db.query("select * from public.audit_logs"));
     expect(audit.rows).toHaveLength(0);
     const priv = await as(db, coach, () => db.query("select * from public.athlete_private"));

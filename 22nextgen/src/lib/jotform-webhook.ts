@@ -116,7 +116,7 @@ export function extractRegistration(sub: JotformSubmission): ExtractedRegistrati
       out.participant_last_name = out.participant_last_name ?? clean(value, 80);
       continue;
     }
-    if (/grad(uat)?|class of/.test(l)) {
+    if (/graduat|\bgrad\b|grad\s*(year|class)|class of/.test(l)) {
       const m = value.match(/(20\d{2})/);
       if (m && Number(m[1]) >= 2025 && Number(m[1]) <= 2045) out.graduation_year = Number(m[1]);
       continue;

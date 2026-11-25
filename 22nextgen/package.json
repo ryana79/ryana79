@@ -10,8 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "bootstrap:owner": "tsx --env-file-if-exists=.env.local scripts/bootstrap-owner.ts",
-    "seed:demo": "tsx --env-file-if-exists=.env.local scripts/seed-demo.ts"
+    "bootstrap:owner": "tsx --env-file-if-exists=.env.local scripts/bootstrap-owner.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

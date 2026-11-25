@@ -29,7 +29,7 @@ export async function proxy(request: NextRequest) {
     login.search = `?next=${encodeURIComponent(path)}`;
     return NextResponse.redirect(login);
   }
-  response.headers.set("Cache-Control", protectedArea ? "private, no-store" : response.headers.get("Cache-Control") ?? "");
+  if (protectedArea) response.headers.set("Cache-Control", "private, no-store");
   return response;
 }
 
