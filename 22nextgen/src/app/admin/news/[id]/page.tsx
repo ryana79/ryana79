@@ -4,13 +4,6 @@ import { createClient } from "@/lib/supabase/server";
 import { AdminPageHeader } from "@/components/admin/ui";
 import { ArticleForm } from "@/components/admin/article-form";
 
-function toLocalInput(iso: string | null) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 export default async function EditArticlePage({ params }: { params: Promise<{ id: string }> }) {
   await requireCapability("news.manage");
   const { id } = await params;

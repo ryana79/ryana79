@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -20,8 +20,8 @@ export function ConsentForm({ athleteId, defaultGuardian }: { athleteId: string;
     resolver: zodResolver(consentSchema) as never,
     defaultValues: { athlete_id: athleteId, status: "granted", guardian_name: defaultGuardian ?? "", guardian_relationship: "Parent", method: "", verifiable_parental_consent: false, evidence_note: "" },
   });
-  const { register, handleSubmit, setError, watch, reset, formState: { errors } } = form;
-  const status = watch("status");
+  const { register, control, handleSubmit, setError, reset, formState: { errors } } = form;
+  const status = useWatch({ control, name: "status" });
   const err = (k: keyof ConsentInput) => (errors[k] as { message?: string } | undefined)?.message;
 
   const onSubmit = handleSubmit(() =>

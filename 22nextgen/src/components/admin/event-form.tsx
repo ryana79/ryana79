@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle, Loader2, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -30,12 +30,12 @@ export function EventForm({ eventId, initial, sponsors, status }: { eventId: str
   const [pending, start] = useTransition();
   const [slugTouched, setSlugTouched] = useState(!!eventId);
   const form = useForm<EventFormInput, unknown, EventFormOutput>({ resolver: zodResolver(eventSchema), defaultValues: initial, mode: "onBlur" });
-  const { register, control, handleSubmit, setValue, setError, watch, formState: { errors } } = form;
+  const { register, control, handleSubmit, setValue, setError, formState: { errors } } = form;
   const itinerary = useFieldArray({ control, name: "itinerary" });
   const faqs = useFieldArray({ control, name: "faqs" });
   const staff = useFieldArray({ control, name: "staff" });
   const gallery = useFieldArray({ control, name: "gallery" });
-  const jotformInput = watch("jotform_input") ?? "";
+  const jotformInput = useWatch({ control, name: "jotform_input" }) ?? "";
   const jotformParsed = jotformInput ? parseJotformInput(jotformInput) : null;
   const err = (k: keyof EventFormInput) => (errors[k] as { message?: string } | undefined)?.message;
 

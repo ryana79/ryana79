@@ -1,22 +1,33 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Btn } from "./btn";
 
+const CONSENT_EVENT = "ng-consent-change";
+type Consent = "granted" | "denied" | "unset";
+
+function subscribeConsent(cb: () => void) {
+  window.addEventListener(CONSENT_EVENT, cb);
+  window.addEventListener("storage", cb);
+  return () => {
+    window.removeEventListener(CONSENT_EVENT, cb);
+    window.removeEventListener("storage", cb);
+  };
+}
+
+function readConsent(): Consent {
+  try {
+    const stored = window.localStorage.getItem("ng_consent");
+    if (stored === "granted" || stored === "denied") return stored;
+  } catch {}
+  return "unset";
+}
+
 /** GA4 loads ONLY after the visitor opts in. Without NEXT_PUBLIC_GA_MEASUREMENT_ID nothing loads and no banner is shown. */
 export function AnalyticsConsent({ measurementId }: { measurementId: string | null }) {
-  const [choice, setChoice] = useState<"granted" | "denied" | "unset" | null>(null);
-
-  useEffect(() => {
-    let value: "granted" | "denied" | "unset" = "unset";
-    try {
-      const stored = window.localStorage.getItem("ng_consent");
-      if (stored === "granted" || stored === "denied") value = stored;
-    } catch {}
-    setChoice(value);
-  }, []);
+  const choice = useSyncExternalStore(subscribeConsent, readConsent, () => null);
 
   if (!measurementId || choice === null) return null;
 
@@ -24,7 +35,7 @@ export function AnalyticsConsent({ measurementId }: { measurementId: string | nu
     try {
       window.localStorage.setItem("ng_consent", v);
     } catch {}
-    setChoice(v);
+    window.dispatchEvent(new Event(CONSENT_EVENT));
   };
 
   return (

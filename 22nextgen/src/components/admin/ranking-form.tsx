@@ -28,11 +28,12 @@ export function RankingForm({ rankingId, initial, initialEntries }: { rankingId:
   const err = (k: keyof Input) => (errors[k] as { message?: string } | undefined)?.message;
 
   useEffect(() => {
-    if (term.trim().length < 2) return void setOptions([]);
+    if (term.trim().length < 2) return;
     const t = setTimeout(async () => setOptions(await searchAthletesForPicker(term)), 250);
     return () => clearTimeout(t);
   }, [term]);
 
+  const shownOptions = term.trim().length >= 2 ? options : [];
   const move = (i: number, d: -1 | 1) => setEntries((list) => { const j = i + d; if (j < 0 || j >= list.length) return list; const c = [...list]; [c[i], c[j]] = [c[j], c[i]]; return c; });
 
   const onSubmit = handleSubmit(() =>
@@ -64,7 +65,7 @@ export function RankingForm({ rankingId, initial, initialEntries }: { rankingId:
       <Panel title="Athletes (in rank order)" description="Only approved, public athletes appear on the public ranking. Others stay hidden until approved.">
         <div className="relative mb-4 max-w-md">
           <input aria-label="Search athletes to add" className="field" placeholder="Search athletes to add…" value={term} onChange={(e) => setTerm(e.target.value)} autoComplete="off" />
-          {options.length ? <ul className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md border border-white/15 bg-[#111113] shadow-xl">{options.map((o) => <li key={o.id}><button type="button" disabled={entries.some((e) => e.athlete_id === o.id)} className="block w-full px-3 py-2 text-left text-sm hover:bg-white/10 disabled:opacity-40" onClick={() => { setEntries((l) => [...l, { athlete_id: o.id, label: o.label, note: "", isPublic: o.isPublic }]); setTerm(""); setOptions([]); }}>{o.label}{o.isPublic ? "" : " (not public)"}</button></li>)}</ul> : null}
+          {shownOptions.length ? <ul className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md border border-white/15 bg-[#111113] shadow-xl">{shownOptions.map((o) => <li key={o.id}><button type="button" disabled={entries.some((e) => e.athlete_id === o.id)} className="block w-full px-3 py-2 text-left text-sm hover:bg-white/10 disabled:opacity-40" onClick={() => { setEntries((l) => [...l, { athlete_id: o.id, label: o.label, note: "", isPublic: o.isPublic }]); setTerm(""); setOptions([]); }}>{o.label}{o.isPublic ? "" : " (not public)"}</button></li>)}</ul> : null}
         </div>
         {entries.length ? (
           <ol className="space-y-2">

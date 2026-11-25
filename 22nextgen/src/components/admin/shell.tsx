@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LogOut, Menu, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Wordmark } from "@/components/site/logo";
@@ -13,7 +13,11 @@ import { signOut } from "@/lib/actions/auth";
 export function AdminShell({ email, roles, children }: { email: string | null; roles: AppRole[]; children: React.ReactNode }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [pathname]);
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
   const items = ADMIN_NAV.filter((i) => can(roles, i.capability));
   const groups = [...new Set(items.map((i) => i.group))];
   const active = (href: string) => (href === "/admin" ? pathname === "/admin" : pathname === href || pathname.startsWith(`${href}/`));

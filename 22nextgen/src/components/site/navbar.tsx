@@ -24,10 +24,12 @@ export function Navbar({ signedIn }: { signedIn: boolean }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
     setMobileOpen(false);
     setOpenMenu(null);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";

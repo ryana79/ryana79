@@ -39,6 +39,7 @@ export default async function AdminResultsPage({ searchParams }: { searchParams:
   return (
     <div className="space-y-6">
       <AdminPageHeader title="Results" description="Enter, correct and verify combine results. Only verified, current results appear on public leaderboards." actions={<>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/api/admin/export/results" className={adminBtn.secondary}>Export CSV</a>
         {canVerify ? <Link href="/admin/results/tests" className={adminBtn.secondary}>Manage tests</Link> : null}
       </>} />

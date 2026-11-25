@@ -19,10 +19,12 @@ export function ResultForm({ events, tests, canVerify, defaultAthlete, defaultEv
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (term.trim().length < 2) return void setOptions([]);
+    if (term.trim().length < 2) return;
     const t = setTimeout(async () => setOptions(await searchAthletesForPicker(term)), 250);
     return () => clearTimeout(t);
   }, [term]);
+
+  const shownOptions = term.trim().length >= 2 ? options : [];
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ export function ResultForm({ events, tests, canVerify, defaultAthlete, defaultEv
           ) : (
             <div className="relative">
               <input id="r-athlete" className="field" placeholder="Search by first or last name…" value={term} onChange={(e) => setTerm(e.target.value)} autoComplete="off" />
-              {options.length ? <ul className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md border border-white/15 bg-[#111113] shadow-xl">{options.map((o) => <li key={o.id}><button type="button" className="block w-full px-3 py-2 text-left text-sm hover:bg-white/10" onClick={() => { setAthlete(o); setOptions([]); }}>{o.label}</button></li>)}</ul> : null}
+              {shownOptions.length ? <ul className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-md border border-white/15 bg-[#111113] shadow-xl">{shownOptions.map((o) => <li key={o.id}><button type="button" className="block w-full px-3 py-2 text-left text-sm hover:bg-white/10" onClick={() => { setAthlete(o); setOptions([]); }}>{o.label}</button></li>)}</ul> : null}
             </div>
           )}
         </Field>
