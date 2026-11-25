@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, CalendarX2, Check, Clock, Medal, Newspaper, Sparkles, Trophy, UserRoundCheck } from "lucide-react";
+import { ArrowRight, Calendar, CalendarX2, Check, Clock, MapPin, Medal, Newspaper, Sparkles, Target, Timer, Trophy, UserRoundCheck, Users } from "lucide-react";
 import { ButtonLink } from "./btn";
 import { Section, SectionHeader, EmptyState } from "./section";
 import { HeroItem, HeroStagger, Reveal } from "./reveal";
 import { MediaImage } from "./media";
-import { AthleteCard, ArticleCard, EventCard, SponsorLogo } from "./cards";
-import { formatCents, formatMeasurement } from "@/lib/format";
+import { AthleteCard, ArticleCard, Badge, EventCard, SponsorLogo } from "./cards";
+import { dateParts, formatCents, formatEventDate, formatMeasurement, formatTimeRange } from "@/lib/format";
+import { canRegister, eligibilityLabel, locationLabel, priceLabel, registrationLabel, typeLabel } from "@/lib/event-utils";
 import type { ArticleRow, AthleteRow, EventRow, HomepageSettings, MembershipSettings, SponsorRow, TestTypeRow } from "@/lib/types";
 import type { getLeaderboard } from "@/lib/data/public";
 import { BRAND } from "@/lib/site";
@@ -46,6 +47,94 @@ export function Hero({ hero }: { hero: HomepageSettings["hero"] }) {
       </div>
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#080808] to-transparent" aria-hidden />
     </section>
+  );
+}
+
+const EVENT_PITCHES = [
+  {
+    icon: Timer,
+    title: "Combines",
+    body: "Timed tests and jumps. Staff-verified numbers go on your profile and the public leaderboard.",
+    href: "/events?type=combine",
+  },
+  {
+    icon: Users,
+    title: "Showcases",
+    body: "Play and test where coaches can watch, with film and measurables tied to an approved profile.",
+    href: "/events?type=showcase",
+  },
+  {
+    icon: Target,
+    title: "Development camps",
+    body: "Position work and coaching reps for athletes who want more than a one-day test.",
+    href: "/events?type=camp",
+  },
+] as const;
+
+export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["event_promo"]; featured: EventRow | null }) {
+  const dp = featured ? dateParts(featured.event_date) : null;
+  const open = featured ? canRegister(featured) : false;
+  const when = featured
+    ? [formatEventDate(featured.event_date), formatTimeRange(featured.start_time, featured.end_time, featured.time_zone, featured.event_date)].filter(Boolean).join(" · ")
+    : null;
+
+  return (
+    <Section id="promote-events" className="!pb-8 sm:!pb-10">
+      <SectionHeader eyebrow="Compete" title={cfg.title} description={cfg.description} href="/events" hrefLabel="All events" />
+      {featured ? (
+        <article className="card-surface relative mb-5 grid overflow-hidden lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <div className="relative min-h-56 sm:min-h-72">
+            <MediaImage path={featured.hero_image_path ?? featured.card_image_path} alt="" sizes="(min-width: 1024px) 50vw, 100vw" priority className="size-full" placeholderLabel={`${featured.title} artwork`} />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/20 lg:bg-gradient-to-r" aria-hidden />
+            {dp ? (
+              <div className="absolute left-4 top-4 rounded-lg bg-black/70 px-3 py-2 text-center backdrop-blur">
+                <div className="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand">{dp.month}</div>
+                <div className="font-display text-3xl font-extrabold leading-none">{dp.day}</div>
+              </div>
+            ) : null}
+          </div>
+          <div className="flex min-w-0 flex-col justify-center gap-4 p-6 sm:p-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge>Next event</Badge>
+              <Badge tone="neutral">{typeLabel(featured.event_type)}</Badge>
+              <Badge tone={open ? "success" : "warn"}>{registrationLabel(featured.registration_status)}</Badge>
+            </div>
+            <h3 className="font-display text-4xl font-extrabold uppercase leading-none tracking-wide sm:text-5xl">{featured.title}</h3>
+            <ul className="space-y-1.5 text-sm text-white/70">
+              {when ? <li className="flex items-start gap-2"><Calendar className="mt-0.5 size-4 shrink-0 text-brand" />{when}</li> : null}
+              <li className="flex items-start gap-2"><MapPin className="mt-0.5 size-4 shrink-0 text-brand" />{locationLabel(featured)}</li>
+              <li className="flex items-start gap-2"><Users className="mt-0.5 size-4 shrink-0 text-brand" />{eligibilityLabel(featured)}</li>
+            </ul>
+            <div className="flex flex-wrap items-center gap-4 pt-1">
+              <p className="font-display text-3xl font-extrabold">{priceLabel(featured)}</p>
+              <ButtonLink href={`/events/${featured.slug}${open ? "#register" : ""}`} size="md">
+                {open ? "Register now" : "View event"} <ArrowRight className="size-4" />
+              </ButtonLink>
+            </div>
+          </div>
+        </article>
+      ) : (
+        <div className="mb-5 flex flex-col gap-4 rounded-xl border border-dashed border-white/15 bg-white/[0.02] px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-white/70">The next date is not posted yet. New combines, showcases and camps are announced here first.</p>
+          <div className="flex flex-wrap gap-3">
+            <ButtonLink href="/events" size="sm">Explore events</ButtonLink>
+            <ButtonLink href="/contact" size="sm" variant="outline">Ask about dates</ButtonLink>
+          </div>
+        </div>
+      )}
+      <ul className="grid gap-4 md:grid-cols-3">
+        {EVENT_PITCHES.map((pitch) => (
+          <li key={pitch.title}>
+            <Link href={pitch.href} className="card-surface card-hover flex h-full min-w-0 flex-col gap-3 p-5">
+              <pitch.icon className="size-5 text-brand" aria-hidden />
+              <h3 className="font-display text-2xl font-extrabold uppercase tracking-wide">{pitch.title}</h3>
+              <p className="text-sm text-white/65">{pitch.body}</p>
+              <span className="mt-auto inline-flex items-center gap-1 pt-2 text-sm font-semibold text-brand">See dates <ArrowRight className="size-4" /></span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }
 

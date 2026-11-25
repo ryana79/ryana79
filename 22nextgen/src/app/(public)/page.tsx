@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getPublicSettings } from "@/lib/data/settings";
 import { getFeaturedAthletes, getLatestArticles, getLeaderboard, getSponsors, getTestTypes, getUpcomingEvents } from "@/lib/data/public";
-import { FeaturedAthletesSection, Hero, LeaderboardsSection, MembershipPromo, NewsSection, SponsorsSection, UpcomingEventsSection } from "@/components/site/home-sections";
+import { EventPromoSection, FeaturedAthletesSection, Hero, LeaderboardsSection, MembershipPromo, NewsSection, SponsorsSection, UpcomingEventsSection } from "@/components/site/home-sections";
 import { BRAND } from "@/lib/site";
 
 export const revalidate = 60;
@@ -17,7 +17,7 @@ export default async function HomePage() {
   const settings = await getPublicSettings();
   const cfg = settings.homepage;
   const [events, featured, articles, sponsors, tests] = await Promise.all([
-    cfg.events.enabled ? getUpcomingEvents(3) : Promise.resolve([]),
+    cfg.events.enabled || cfg.event_promo.enabled ? getUpcomingEvents(3) : Promise.resolve([]),
     cfg.athletes.enabled ? getFeaturedAthletes(4) : Promise.resolve({ athletes: [], metrics: new Map() }),
     cfg.news.enabled ? getLatestArticles(3) : Promise.resolve([]),
     cfg.sponsors.enabled ? getSponsors() : Promise.resolve([]),
@@ -28,6 +28,7 @@ export default async function HomePage() {
   return (
     <>
       {cfg.hero.enabled ? <Hero hero={cfg.hero} /> : <div className="h-20" />}
+      {cfg.event_promo.enabled ? <EventPromoSection cfg={cfg.event_promo} featured={events[0] ?? null} /> : null}
       {cfg.events.enabled ? <UpcomingEventsSection cfg={cfg.events} events={events} /> : null}
       {cfg.athletes.enabled ? <FeaturedAthletesSection cfg={cfg.athletes} athletes={featured.athletes} metrics={featured.metrics} /> : null}
       {cfg.leaderboards.enabled ? <LeaderboardsSection cfg={cfg.leaderboards} boards={boards} /> : null}

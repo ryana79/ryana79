@@ -13,6 +13,11 @@ export const DEFAULT_HOMEPAGE: HomepageSettings = {
     secondary_cta_href: "/register",
     background_image_path: null,
   },
+  event_promo: {
+    enabled: true,
+    title: "Get on the field",
+    description: "Combines, showcases and development camps across New Jersey. Test your game, get in front of coaches, and leave with verified results.",
+  },
   events: { enabled: true, title: "Upcoming Events", description: "Combines, showcases and development camps across the Northeast." },
   athletes: { enabled: true, title: "Featured Athletes", description: "Approved public profiles with verified performance metrics." },
   leaderboards: { enabled: true, title: "Performance Leaderboards", description: "Verified combine results only." },

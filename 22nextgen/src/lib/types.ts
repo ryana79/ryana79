@@ -168,6 +168,7 @@ export type HomepageSettings = {
     secondary_cta_href: string;
     background_image_path: string | null;
   };
+  event_promo: SectionSetting;
   events: SectionSetting;
   athletes: SectionSetting;
   leaderboards: SectionSetting;

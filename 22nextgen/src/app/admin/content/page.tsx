@@ -23,7 +23,7 @@ export default async function AdminContentPage() {
       <ContentForm
         initial={{
           hero: { ...hp.hero, background_image_path: hp.hero.background_image_path ?? "" },
-          events: hp.events, athletes: hp.athletes, leaderboards: hp.leaderboards, news: hp.news, membership_section: hp.membership, sponsors: hp.sponsors,
+          event_promo: hp.event_promo, events: hp.events, athletes: hp.athletes, leaderboards: hp.leaderboards, news: hp.news, membership_section: hp.membership, sponsors: hp.sponsors,
           membership: { name: m.name, price_dollars: (m.price_cents / 100).toFixed(2), interval: m.interval as "month", available_benefits: m.available_benefits.join("\n"), planned_benefits: m.planned_benefits.join("\n") },
           contact: { email: c.email ?? "", phone: c.phone ?? "", address: c.address ?? "", instagram: social.instagram ?? "", x: social.x ?? "", youtube: social.youtube ?? "", facebook: social.facebook ?? "", tiktok: social.tiktok ?? "" },
           sponsor_packages: { min_dollars: String(Math.round(sp.event_sponsor_min_cents / 100)), max_label: sp.event_sponsor_max_label, annual_partner_label: sp.annual_partner_label, notes: sp.notes },

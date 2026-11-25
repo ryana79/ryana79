@@ -37,6 +37,7 @@ export const siteContentSchema = z.object({
     secondary_cta_href: href,
     background_image_path: optionalText(300),
   }),
+  event_promo: section,
   events: section,
   athletes: section,
   leaderboards: section,

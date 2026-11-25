@@ -12,6 +12,7 @@ import { Notice, Panel, adminBtn } from "./ui";
 import { ImageField } from "./image-field";
 
 const SECTIONS = [
+  ["event_promo", "Event promo"],
   ["events", "Upcoming events"],
   ["athletes", "Featured athletes"],
   ["leaderboards", "Leaderboards"],
