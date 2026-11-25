@@ -32,7 +32,7 @@ export const getCurrentUser = cache(async (): Promise<CurrentUser | null> => {
 export async function requireCapability(capability: Capability): Promise<CurrentUser> {
   const user = await getCurrentUser();
   if (!user) redirect("/login?next=/admin");
-  if (!can(user.roles, capability)) redirect("/admin/forbidden");
+  if (!can(user.roles, capability)) redirect(capability === "dashboard.view" ? "/no-access" : "/admin/forbidden");
   return user;
 }
 

@@ -20,7 +20,7 @@ export function Panel({ title, description, children, className, actions }: { ti
   return (
     <section className={cn("rounded-xl border border-white/[0.08] bg-[#111113]", className)}>
       {title ? (
-        <header className="flex items-start justify-between gap-3 border-b border-white/[0.06] px-5 py-4">
+        <header className="flex flex-wrap items-start justify-between gap-3 border-b border-white/[0.06] px-5 py-4">
           <div><h2 className="font-display text-xl font-bold uppercase tracking-wide">{title}</h2>{description ? <p className="mt-0.5 text-xs text-white/50">{description}</p> : null}</div>
           {actions}
         </header>

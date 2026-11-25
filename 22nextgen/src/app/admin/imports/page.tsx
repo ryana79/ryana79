@@ -19,7 +19,7 @@ export default async function ImportsPage() {
     <div className="space-y-6">
       <AdminPageHeader title="Imports" description="Bring in athletes and combine results from spreadsheets. Nothing is published automatically." />
       <Panel title="Upload a spreadsheet" actions={
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <a className={adminBtn.secondary} href="/api/admin/imports/template?kind=athletes&format=xlsx"><Download className="size-4" />Athlete template</a>
           <a className={adminBtn.secondary} href="/api/admin/imports/template?kind=combine_results&format=xlsx"><Download className="size-4" />Results template</a>
         </div>

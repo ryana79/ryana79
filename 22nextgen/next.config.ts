@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
           },
         ]
       : [],
-    dangerouslyAllowLocalIP: process.env.NODE_ENV !== "production",
+    dangerouslyAllowLocalIP: process.env.NODE_ENV !== "production" || process.env.NEXT_IMAGE_ALLOW_LOCAL === "true",
     formats: ["image/avif", "image/webp"],
   },
   experimental: {
