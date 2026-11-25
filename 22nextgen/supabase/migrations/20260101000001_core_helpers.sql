@@ -81,6 +81,10 @@ create function public.write_audit(
 language plpgsql security definer set search_path = public, pg_temp
 as $$
 begin
+  -- Only staff or database triggers may write audit rows; blocks forged entries via the RPC endpoint.
+  if auth.uid() is not null and pg_trigger_depth() = 0 and not public.is_staff() then
+    raise exception 'Not permitted to write audit entries' using errcode = '42501';
+  end if;
   insert into public.audit_logs (actor_id, actor_email, action, entity_type, entity_id, summary, changed_fields, metadata)
   values (auth.uid(), nullif(auth.jwt() ->> 'email', ''), p_action, p_entity_type, p_entity_id, p_summary, p_changed, coalesce(p_metadata, '{}'::jsonb));
 end;

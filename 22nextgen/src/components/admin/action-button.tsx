@@ -16,10 +16,11 @@ type Props = {
   successMessage?: string;
   className?: string;
   icon?: React.ReactNode;
+  redirectTo?: string;
 };
 
 /** Runs a server action with an optional confirmation dialog, loading state and toast feedback. */
-export function ActionButton({ action, label, variant = "secondary", confirm, successMessage, className, icon }: Props) {
+export function ActionButton({ action, label, variant = "secondary", confirm, successMessage, className, icon, redirectTo }: Props) {
   const router = useRouter();
   const [pending, start] = useTransition();
   const [open, setOpen] = useState(false);
@@ -34,7 +35,8 @@ export function ActionButton({ action, label, variant = "secondary", confirm, su
         }
         toast.success(successMessage ?? `${label} done`);
         setOpen(false);
-        router.refresh();
+        if (redirectTo) router.push(redirectTo);
+        else router.refresh();
       } catch (e) {
         if (e instanceof Error && e.message.includes("NEXT_REDIRECT")) throw e;
         toast.error("Something went wrong. Please try again.");
