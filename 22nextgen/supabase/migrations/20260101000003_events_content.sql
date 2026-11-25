@@ -69,7 +69,7 @@ create table public.events (
   constraint events_age_range check (eligible_age_min is null or eligible_age_max is null or eligible_age_min <= eligible_age_max)
 );
 create index events_public_idx on public.events (event_date) where status = 'published';
-create index events_form_idx on public.events (jotform_form_id) where jotform_form_id is not null;
+create unique index events_form_idx on public.events (jotform_form_id) where jotform_form_id is not null;
 create trigger events_updated before update on public.events
   for each row execute function public.set_updated_at();
 create trigger events_audit after insert or update or delete on public.events

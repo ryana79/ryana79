@@ -56,7 +56,10 @@ export async function saveEvent(id: string | null, input: unknown, intent: "save
 }
 
 function dbError(error: { code?: string; message: string }) {
-  if (error.code === "23505") return fail("That slug is already used by another event.", { slug: ["That slug is already in use."] });
+  if (error.code === "23505") {
+    if (error.message.includes("events_form_idx")) return fail("That Jotform is already linked to another event.", { jotform_input: ["This form is already used by another event."] });
+    return fail("That slug is already used by another event.", { slug: ["That slug is already in use."] });
+  }
   if (error.code === "42501") return fail("You do not have permission to do that.");
   console.error("[admin/events] db error", error.code);
   return fail("The database rejected this change. Please review the fields and try again.");
