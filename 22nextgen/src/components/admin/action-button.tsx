@@ -31,6 +31,7 @@ export function ActionButton({ action, label, variant = "secondary", confirm, su
         const res = await action();
         if (res && "ok" in res && !res.ok) {
           toast.error(res.error ?? "Action failed");
+          setOpen(false);
           return;
         }
         toast.success(successMessage ?? `${label} done`);
@@ -40,6 +41,7 @@ export function ActionButton({ action, label, variant = "secondary", confirm, su
       } catch (e) {
         if (e instanceof Error && e.message.includes("NEXT_REDIRECT")) throw e;
         toast.error("Something went wrong. Please try again.");
+        setOpen(false);
       }
     });
 
