@@ -17,7 +17,9 @@ import { sanitizeRichText, stripHtml } from "@/lib/sanitize";
 import { mediaUrl } from "@/lib/media";
 import { MediaGallery } from "@/components/site/media-gallery";
 import { TurkeyBowlPage } from "@/components/site/turkey-bowl";
+import { CalendarEventPage } from "@/components/site/event-calendar";
 import { TURKEY_BOWL_COPY, TURKEY_BOWL_SLUG, asPublicTurkeyBowl } from "@/lib/events/turkey-bowl";
+import { calendarEvent } from "@/lib/events/calendar-2027";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -29,6 +31,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const calendar = calendarEvent(slug);
+  if (calendar) {
+    return {
+      title: calendar.title,
+      description: calendar.teaser,
+      alternates: { canonical: `/events/${calendar.slug}` },
+    };
+  }
   if (slug === TURKEY_BOWL_SLUG) {
     return {
       title: TURKEY_BOWL_COPY.title,
@@ -52,6 +62,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const calendarPage = calendarEvent(slug);
+  if (calendarPage) return <CalendarEventPage event={calendarPage} />;
   if (slug === TURKEY_BOWL_SLUG) {
     const data = await getEventBySlug(slug);
     return <TurkeyBowlPage event={asPublicTurkeyBowl(data?.event)} />;

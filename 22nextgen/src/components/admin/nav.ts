@@ -14,6 +14,7 @@ export const ADMIN_NAV: { href: string; label: string; icon: typeof Gauge; capab
   { href: "/admin/content", label: "Site content", icon: FileText, capability: "content.manage", group: "Content" },
   { href: "/admin/memberships", label: "Memberships", icon: Sparkles, capability: "memberships.view", group: "Business" },
   { href: "/admin/inquiries", label: "Inquiries", icon: Inbox, capability: "registrations.view", group: "Business" },
+  { href: "/admin/leads", label: "Event leads", icon: Inbox, capability: "registrations.view", group: "Business" },
   { href: "/admin/privacy", label: "Privacy requests", icon: ShieldCheck, capability: "privacy.manage", group: "Business" },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3, capability: "analytics.view", group: "Business" },
   { href: "/admin/settings", label: "Settings", icon: Settings, capability: "settings.manage", group: "Business" },

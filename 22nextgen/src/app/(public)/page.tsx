@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { getPublicSettings } from "@/lib/data/settings";
 import { getFeaturedAthletes, getLatestArticles, getLeaderboard, getSponsors, getTestTypes, getUpcomingEvents } from "@/lib/data/public";
 import { EventPromoSection, FeaturedAthletesSection, Hero, LeaderboardsSection, MembershipPromo, NewsSection, SponsorsSection, UpcomingEventsSection } from "@/components/site/home-sections";
+import { Calendar2027Section, CalendarSpotlight } from "@/components/site/event-calendar";
 import { BRAND } from "@/lib/site";
 import { mergeTurkeyBowl } from "@/lib/events/turkey-bowl";
+import { isCalendar2027 } from "@/lib/events/calendar-2027";
 
 export const revalidate = 60;
 
@@ -25,12 +27,12 @@ export default async function HomePage() {
     cfg.leaderboards.enabled ? getTestTypes() : Promise.resolve([]),
   ]);
   const boards = cfg.leaderboards.enabled ? await Promise.all(tests.map((t) => getLeaderboard(t.slug, {}, 5))) : [];
-  const listedEvents = mergeTurkeyBowl(events);
+  const listedEvents = mergeTurkeyBowl(events).filter((event) => !isCalendar2027(event.slug));
 
   return (
     <>
       {cfg.hero.enabled ? <Hero hero={cfg.hero} /> : <div className="h-20" />}
-      {cfg.event_promo.enabled ? <EventPromoSection cfg={cfg.event_promo} featured={listedEvents[0] ?? null} /> : null}
+      {cfg.event_promo.enabled ? <EventPromoSection cfg={cfg.event_promo} featured={listedEvents[0] ?? null} spotlight={<CalendarSpotlight />} afterFeature={<Calendar2027Section embedded />} /> : null}
       {cfg.events.enabled ? <UpcomingEventsSection cfg={cfg.events} events={listedEvents} /> : null}
       {cfg.athletes.enabled ? <FeaturedAthletesSection cfg={cfg.athletes} athletes={featured.athletes} metrics={featured.metrics} /> : null}
       {cfg.leaderboards.enabled ? <LeaderboardsSection cfg={cfg.leaderboards} boards={boards} /> : null}

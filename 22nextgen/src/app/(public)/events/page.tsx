@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarX2 } from "lucide-react";
 import { EventCard } from "@/components/site/cards";
+import { CalendarEventCard } from "@/components/site/event-calendar";
 import { EmptyState, PageHero, Section } from "@/components/site/section";
 import { ButtonLink } from "@/components/site/btn";
 import { listEvents } from "@/lib/data/public";
 import { mergeTurkeyBowl } from "@/lib/events/turkey-bowl";
+import { calendarEvent, isCalendar2027, mergeCalendarEvents } from "@/lib/events/calendar-2027";
 import { EVENT_TYPES, REGIONS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +24,7 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
   const type = EVENT_TYPES.some((t) => t.value === sp.type) ? sp.type : undefined;
   const region = REGIONS.includes(sp.region as (typeof REGIONS)[number]) ? sp.region : undefined;
   const past = sp.when === "past";
-  const events = mergeTurkeyBowl(await listEvents({ type, region, past }), { type, region, past });
+  const events = mergeCalendarEvents(mergeTurkeyBowl(await listEvents({ type, region, past }), { type, region, past }), { type, region, past });
 
   const href = (patch: Record<string, string | undefined>) => {
     const q = new URLSearchParams();
@@ -53,7 +55,10 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
           </nav>
         </div>
         {events.length ? (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{events.map((e) => <EventCard key={e.id} event={e} />)}</div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{events.map((e) => {
+            const calendar = calendarEvent(e.slug);
+            return isCalendar2027(e.slug) && calendar ? <CalendarEventCard key={e.id} event={calendar} /> : <EventCard key={e.id} event={e} />;
+          })}</div>
         ) : (
           <EmptyState
             icon={<CalendarX2 className="size-6" />}

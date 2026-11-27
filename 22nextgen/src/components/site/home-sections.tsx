@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, Calendar, CalendarX2, Check, Clock, MapPin, Medal, Newspaper, Sparkles, Target, Timer, Trophy, UserRoundCheck, Users } from "lucide-react";
 import { ButtonLink } from "./btn";
@@ -73,7 +74,7 @@ const EVENT_PITCHES = [
   },
 ] as const;
 
-export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["event_promo"]; featured: EventRow | null }) {
+export function EventPromoSection({ cfg, featured, spotlight, afterFeature }: { cfg: HomepageSettings["event_promo"]; featured: EventRow | null; spotlight?: ReactNode; afterFeature?: ReactNode }) {
   const dp = featured ? dateParts(featured.event_date) : null;
   const open = featured ? canRegister(featured) : false;
   const closed = featured?.registration_status === "closed";
@@ -86,7 +87,7 @@ export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["ev
   return (
     <Section id="promote-events" className="!pb-8 sm:!pb-10">
       <SectionHeader eyebrow="Compete" title={cfg.title} description={cfg.description} href="/events" hrefLabel="All events" />
-      {featured ? (
+      {spotlight ? spotlight : featured ? (
         <article className="card-surface relative mb-5 grid overflow-hidden lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div className="relative h-52 sm:h-64 lg:h-auto lg:min-h-80">
             {poster ? (
@@ -137,6 +138,7 @@ export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["ev
           </div>
         </div>
       )}
+      {afterFeature}
       <ul className="grid gap-4 md:grid-cols-3">
         {EVENT_PITCHES.map((pitch) => (
           <li key={pitch.title}>

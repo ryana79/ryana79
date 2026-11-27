@@ -51,9 +51,9 @@ const TONES = {
 
 export function StatusBadge({ status }: { status: string }) {
   const tone: keyof typeof TONES =
-    ["published", "approved", "verified", "granted", "open", "applied", "completed", "linked", "active"].includes(status) ? "green"
-    : ["draft", "pending_review", "unverified", "pending", "needs_review", "staged", "previewed", "received", "new", "verifying", "in_progress", "none", "inactive", "coming_soon"].includes(status) ? "amber"
-    : ["rejected", "failed", "withdrawn", "declined", "cancelled", "past_due"].includes(status) ? "red"
+    ["published", "approved", "verified", "granted", "open", "applied", "completed", "linked", "active", "opted_in"].includes(status) ? "green"
+    : ["draft", "pending_review", "unverified", "pending", "needs_review", "staged", "previewed", "received", "new", "verifying", "in_progress", "none", "inactive", "coming_soon", "unknown"].includes(status) ? "amber"
+    : ["rejected", "failed", "withdrawn", "declined", "cancelled", "past_due", "opted_out"].includes(status) ? "red"
     : "gray";
   return <span className={cn("inline-flex whitespace-nowrap rounded-full border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider", TONES[tone])}>{status.replace(/_/g, " ")}</span>;
 }
