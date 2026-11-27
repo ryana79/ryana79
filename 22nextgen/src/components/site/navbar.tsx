@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { NAV } from "@/lib/site";
@@ -59,7 +60,7 @@ export function Navbar({ signedIn }: { signedIn: boolean }) {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`));
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-300", scrolled || mobileOpen ? "border-b border-white/[0.08] bg-[#080808]/90 backdrop-blur-xl" : "bg-gradient-to-b from-black/70 to-transparent")}>
+    <header className={cn("fixed inset-x-0 top-0 z-50", mobileOpen ? "border-b border-white/10 bg-[#080808]" : scrolled ? "border-b border-white/[0.08] bg-[#080808]/90 backdrop-blur-xl" : "bg-gradient-to-b from-black/70 to-transparent")}>
       <nav ref={navRef} aria-label="Primary" className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[4.5rem]">
         <Wordmark />
 
@@ -136,34 +137,57 @@ export function Navbar({ signedIn }: { signedIn: boolean }) {
         </button>
       </nav>
 
-      <AnimatePresence>
-        {mobileOpen ? (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 bottom-0 overflow-y-auto bg-[#080808] px-5 pb-10 pt-4 lg:hidden"
-          >
-            <ul className="divide-y divide-white/[0.07]">
-              {NAV.flatMap((item) => (item.children ? item.children : [{ label: item.label, href: item.href }])).map((c) => (
-                <li key={c.href}>
-                  <Link href={c.href} className={cn("flex items-center justify-between py-4 font-display text-3xl font-bold uppercase tracking-wide", isActive(c.href) ? "text-brand" : "text-white")}>
-                    {c.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 grid gap-3">
-              <ButtonLink href="/register" size="lg">Create Athlete Profile</ButtonLink>
-              <ButtonLink href={signedIn ? "/dashboard" : "/login"} variant="outline" size="lg">
-                {signedIn ? "Dashboard" : "Log In"}
-              </ButtonLink>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      {mobileOpen ? <MobileMenu signedIn={signedIn} isActive={isActive} /> : null}
     </header>
+  );
+}
+
+function MobileMenu({ signedIn, isActive }: { signedIn: boolean; isActive: (href: string) => boolean }) {
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col bg-[#080808] lg:hidden">
+      <nav className="min-h-0 flex-1 overflow-y-auto px-5 pt-2" aria-label="Mobile">
+        <ul>
+          {NAV.map((item) =>
+            item.children ? (
+              <li key={item.label} className="border-b border-white/10 py-2">
+                <p className="px-1 pt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">{item.label}</p>
+                <ul className="mt-1">
+                  {item.children.map((child) => (
+                    <li key={child.href}>
+                      <Link
+                        href={child.href}
+                        aria-current={isActive(child.href) ? "page" : undefined}
+                        className={cn("flex min-h-11 items-center rounded-lg px-2 font-display text-xl font-bold uppercase tracking-wide", isActive(child.href) ? "text-brand" : "text-white")}
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={item.href} className="border-b border-white/10">
+                <Link
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  className={cn("flex min-h-14 items-center font-display text-2xl font-bold uppercase tracking-wide", isActive(item.href) ? "text-brand" : "text-white")}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ),
+          )}
+        </ul>
+      </nav>
+      <div className="grid gap-2 border-t border-white/10 bg-[#080808] px-5 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <ButtonLink href="/register" size="md" className="w-full">Create Athlete Profile</ButtonLink>
+        <ButtonLink href={signedIn ? "/dashboard" : "/login"} variant="outline" size="md" className="w-full">
+          {signedIn ? "Dashboard" : "Log In"}
+        </ButtonLink>
+      </div>
+    </div>,
+    document.body,
   );
 }
