@@ -7,7 +7,8 @@ import { MediaImage } from "./media";
 import { AthleteCard, ArticleCard, Badge, EventCard, SponsorLogo } from "./cards";
 import { dateParts, formatCents, formatEventDate, formatMeasurement, formatTimeRange } from "@/lib/format";
 import { canRegister, eligibilityLabel, locationLabel, priceLabel, registrationLabel, typeLabel } from "@/lib/event-utils";
-import { checkInHref, directionsFor } from "@/lib/events/turkey-bowl";
+import { checkInHref, directionsFor, TURKEY_BOWL_SLUG } from "@/lib/events/turkey-bowl";
+import { TurkeyBowlArt } from "./turkey-bowl-art";
 import type { ArticleRow, AthleteRow, EventRow, HomepageSettings, MembershipSettings, SponsorRow, TestTypeRow } from "@/lib/types";
 import type { getLeaderboard } from "@/lib/data/public";
 import { BRAND } from "@/lib/site";
@@ -77,6 +78,7 @@ export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["ev
   const open = featured ? canRegister(featured) : false;
   const closed = featured?.registration_status === "closed";
   const directions = featured ? directionsFor(featured) : null;
+  const poster = Boolean(featured && featured.slug === TURKEY_BOWL_SLUG && !featured.hero_image_path && !featured.card_image_path);
   const when = featured
     ? [formatEventDate(featured.event_date), formatTimeRange(featured.start_time, featured.end_time, featured.time_zone, featured.event_date)].filter(Boolean).join(" · ")
     : null;
@@ -85,38 +87,41 @@ export function EventPromoSection({ cfg, featured }: { cfg: HomepageSettings["ev
     <Section id="promote-events" className="!pb-8 sm:!pb-10">
       <SectionHeader eyebrow="Compete" title={cfg.title} description={cfg.description} href="/events" hrefLabel="All events" />
       {featured ? (
-        <article className="card-surface relative mb-5 grid overflow-hidden lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-          <div className="relative min-h-56 sm:min-h-72">
-            <MediaImage path={featured.hero_image_path ?? featured.card_image_path} alt="" sizes="(min-width: 1024px) 50vw, 100vw" priority className="size-full" placeholderLabel={`${featured.title} artwork`} />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/20 lg:bg-gradient-to-r" aria-hidden />
-            {dp ? (
-              <div className="absolute left-4 top-4 rounded-lg bg-black/70 px-3 py-2 text-center backdrop-blur">
-                <div className="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand">{dp.month}</div>
-                <div className="font-display text-3xl font-extrabold leading-none">{dp.day}</div>
+        <article className="card-surface relative mb-5 grid overflow-hidden lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <div className="relative h-52 sm:h-64 lg:h-auto lg:min-h-80">
+            {poster ? (
+              <TurkeyBowlArt compact className="absolute inset-0" />
+            ) : (
+              <MediaImage path={featured.hero_image_path ?? featured.card_image_path} alt="" sizes="(min-width: 1024px) 50vw, 100vw" priority className="size-full" placeholderLabel={`${featured.title} artwork`} />
+            )}
+            {!poster && dp ? (
+              <div className="absolute left-3 top-3 rounded-lg bg-black/70 px-2.5 py-1.5 text-center backdrop-blur">
+                <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-brand">{dp.month}</div>
+                <div className="font-display text-2xl font-extrabold leading-none">{dp.day}</div>
               </div>
             ) : null}
           </div>
-          <div className="flex min-w-0 flex-col justify-center gap-4 p-6 sm:p-8">
+          <div className="flex min-w-0 flex-col justify-center gap-4 p-4 sm:p-8">
             <div className="flex flex-wrap items-center gap-2">
               <Badge>Next event</Badge>
               <Badge tone="neutral">{typeLabel(featured.event_type)}</Badge>
               <Badge tone={open ? "success" : "warn"}>{registrationLabel(featured.registration_status)}</Badge>
             </div>
-            <h3 className="font-display text-4xl font-extrabold uppercase leading-none tracking-wide sm:text-5xl">{featured.title}</h3>
+            <h3 className="font-display text-[2.1rem] font-extrabold uppercase leading-[0.92] tracking-wide text-balance sm:text-5xl">{featured.title}</h3>
             <ul className="space-y-1.5 text-sm text-white/70">
               {when ? <li className="flex items-start gap-2"><Calendar className="mt-0.5 size-4 shrink-0 text-brand" />{when}</li> : null}
               <li className="flex items-start gap-2"><MapPin className="mt-0.5 size-4 shrink-0 text-brand" />{locationLabel(featured)}</li>
               <li className="flex items-start gap-2"><Users className="mt-0.5 size-4 shrink-0 text-brand" />{eligibilityLabel(featured)}</li>
             </ul>
-            <div className="flex flex-col items-start gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="grid gap-2 pt-1 sm:flex sm:flex-wrap sm:items-center">
               {closed ? null : <p className="font-display text-3xl font-extrabold">{priceLabel(featured)}</p>}
               {closed ? (
                 <>
-                  <ButtonLink href={checkInHref(featured.slug)} size="md">View Check-In Schedule <ArrowRight className="size-4" /></ButtonLink>
-                  {directions ? <ButtonLink href={directions} external variant="outline" size="md">Get Directions</ButtonLink> : null}
+                  <ButtonLink href={checkInHref(featured.slug)} size="md" className="w-full sm:w-auto">View Check-In Schedule <ArrowRight className="size-4" /></ButtonLink>
+                  {directions ? <ButtonLink href={directions} external variant="outline" size="md" className="w-full sm:w-auto">Get Directions</ButtonLink> : null}
                 </>
               ) : (
-                <ButtonLink href={`/events/${featured.slug}${open ? "#register" : ""}`} size="md">
+                <ButtonLink href={`/events/${featured.slug}${open ? "#register" : ""}`} size="md" className="w-full sm:w-auto">
                   {open ? "Register now" : "View event"} <ArrowRight className="size-4" />
                 </ButtonLink>
               )}

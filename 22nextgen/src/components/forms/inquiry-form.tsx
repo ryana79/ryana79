@@ -78,7 +78,7 @@ export function InquiryForm({
       ) : null}
       <Field label={copy.messageLabel} htmlFor={`${kind}-message`} error={errors.message?.message}><textarea id={`${kind}-message`} rows={5} className="field" {...register("message")} /></Field>
       <p className="text-xs text-white/45">Please do not include children&apos;s personal information in this form. We use your details only to respond to you.</p>
-      <Btn type="submit" disabled={pending} size="md">{pending ? <Loader2 className="size-4 animate-spin" /> : null}{copy.cta}</Btn>
+      <Btn type="submit" disabled={pending} size="md" className="w-full sm:w-auto">{pending ? <Loader2 className="size-4 animate-spin" /> : null}{copy.cta}</Btn>
     </form>
   );
 }

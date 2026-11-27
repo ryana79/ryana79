@@ -6,7 +6,8 @@ import { MediaImage } from "./media";
 import { ButtonLink } from "./btn";
 import { athleteName, dateParts, formatEventDate, formatMeasurement, formatPublishedDate, formatTimeRange } from "@/lib/format";
 import { canRegister, eligibilityLabel, locationLabel, priceLabel, registrationLabel, typeLabel } from "@/lib/event-utils";
-import { checkInHref, directionsFor } from "@/lib/events/turkey-bowl";
+import { checkInHref, directionsFor, TURKEY_BOWL_SLUG } from "@/lib/events/turkey-bowl";
+import { TurkeyBowlArt } from "./turkey-bowl-art";
 import { ARTICLE_CATEGORIES, labelFor } from "@/lib/site";
 
 export function Badge({ children, tone = "brand", className }: { children: React.ReactNode; tone?: "brand" | "neutral" | "success" | "warn"; className?: string }) {
@@ -24,33 +25,39 @@ export function EventCard({ event }: { event: EventRow }) {
   const open = canRegister(event);
   const closed = event.registration_status === "closed";
   const directions = directionsFor(event);
+  const poster = event.slug === TURKEY_BOWL_SLUG && !event.card_image_path && !event.hero_image_path;
   return (
     <article className="card-surface card-hover group relative flex flex-col overflow-hidden">
       <Link href={`/events/${event.slug}`} className="absolute inset-0 z-10" aria-label={`${event.title} details`} />
       <div className="relative aspect-[16/10] overflow-hidden">
-        <MediaImage path={event.card_image_path ?? event.hero_image_path} alt="" className="transition duration-700 group-hover:scale-105" placeholderLabel={`${event.title} artwork`} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/20" aria-hidden />
-        {dp ? (
-          <div className="absolute left-4 top-4 rounded-lg bg-black/70 px-3 py-2 text-center backdrop-blur">
-            <div className="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand">{dp.month}</div>
-            <div className="font-display text-3xl font-extrabold leading-none">{dp.day}</div>
+        {poster ? (
+          <TurkeyBowlArt compact className="absolute inset-0 pb-9" />
+        ) : (
+          <MediaImage path={event.card_image_path ?? event.hero_image_path} alt="" className="transition duration-700 group-hover:scale-105" placeholderLabel={`${event.title} artwork`} />
+        )}
+        {poster ? null : <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-black/10" aria-hidden />}
+        {!poster && dp ? (
+          <div className="absolute left-3 top-3 rounded-lg bg-black/70 px-2.5 py-1.5 text-center backdrop-blur">
+            <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-brand">{dp.month}</div>
+            <div className="font-display text-2xl font-extrabold leading-none">{dp.day}</div>
           </div>
         ) : null}
-        <div className="absolute right-4 top-4">
-          <Badge>{typeLabel(event.event_type)}</Badge>
-        </div>
+        {poster ? null : (
+          <div className="absolute right-3 top-3">
+            <Badge>{typeLabel(event.event_type)}</Badge>
+          </div>
+        )}
+        {closed ? <div className="absolute inset-x-0 bottom-0 bg-amber-300 px-3 py-1.5 text-center font-display text-xs font-bold uppercase tracking-[0.16em] text-black">Registration Closed</div> : null}
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <h3 className="font-display text-2xl font-extrabold uppercase leading-tight tracking-wide">{event.title}</h3>
+      <div className="flex flex-1 flex-col gap-3 p-4 sm:p-5">
+        <h3 className="font-display text-[1.65rem] font-extrabold uppercase leading-[0.95] tracking-wide text-balance sm:text-2xl">{event.title}</h3>
         <ul className="space-y-1.5 text-sm text-white/65">
           <li className="flex items-start gap-2"><Calendar className="mt-0.5 size-4 shrink-0 text-brand" />{formatEventDate(event.event_date)}{formatTimeRange(event.start_time, event.end_time, event.time_zone, event.event_date) ? ` · ${formatTimeRange(event.start_time, event.end_time, event.time_zone, event.event_date)}` : ""}</li>
           <li className="flex items-start gap-2"><MapPin className="mt-0.5 size-4 shrink-0 text-brand" />{locationLabel(event)}</li>
           <li className="flex items-start gap-2"><Users className="mt-0.5 size-4 shrink-0 text-brand" />{eligibilityLabel(event)}</li>
         </ul>
-        <div className="mt-auto flex flex-col gap-2 pt-3">
-          {closed ? (
-            <p className="text-xs font-semibold uppercase tracking-wider text-amber-200">Registration Closed</p>
-          ) : (
+        <div className="mt-auto flex flex-col gap-2 pt-2">
+          {closed ? null : (
             <div>
               <div className="font-display text-2xl font-bold">{priceLabel(event)}</div>
               <div className="text-xs uppercase tracking-wider text-white/45">{registrationLabel(event.registration_status)}</div>
@@ -58,8 +65,8 @@ export function EventCard({ event }: { event: EventRow }) {
           )}
           {closed ? (
             <div className="grid gap-2">
-              <ButtonLink href={checkInHref(event.slug)} size="sm" className="relative z-20">View Check-In Schedule</ButtonLink>
-              {directions ? <ButtonLink href={directions} external variant="outline" size="sm" className="relative z-20">Get Directions</ButtonLink> : null}
+              <ButtonLink href={checkInHref(event.slug)} size="sm" className="relative z-20 w-full">View Check-In Schedule</ButtonLink>
+              {directions ? <ButtonLink href={directions} external variant="outline" size="sm" className="relative z-20 w-full">Get Directions</ButtonLink> : null}
             </div>
           ) : (
             <ButtonLink href={`/events/${event.slug}${open ? "#register" : ""}`} size="sm" variant={open ? "primary" : "dark"} className="relative z-20 self-start">
